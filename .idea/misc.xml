@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/backgroundcrop.xml" value="0.1785" />
+        <entry key="app/src/main/res/drawable/btn.xml" value="0.1395" />
+        <entry key="app/src/main/res/drawable/button_bg.xml" value="0.1475" />
+        <entry key="app/src/main/res/drawable/button_bg_round.xml" value="0.1475" />
+        <entry key="app/src/main/res/drawable/button_ji.xml" value="0.1475" />
+        <entry key="app/src/main/res/layout/activity_bow.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_bridge.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/activity_chair.xml" value="0.11367753623188406" />
+        <entry key="app/src/main/res/layout/activity_child.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/layout/activity_cobbler.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/activity_cow.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/layout/activity_crunches.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/layout/activity_food.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/activity_food_detail.xml" value="0.17604166666666668" />
+        <entry key="app/src/main/res/layout/activity_legup.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_pauseji.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/layout/activity_plank.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/layout/activity_playji.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/activity_roatation.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/layout/activity_second.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_second2.xml" value="0.21331521739130435" />
+        <entry key="app/src/main/res/layout/activity_situp.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/layout/activity_splashscreenok.xml" value="0.14114583333333333" />
+        <entry key="app/src/main/res/layout/activity_third.xml" value="0.20208333333333334" />
+        <entry key="app/src/main/res/layout/activity_twist.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/layout/activity_windmill.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/layout/row.xml" value="0.16666666666666666" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
