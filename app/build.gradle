@@ -3,12 +3,13 @@ plugins {
 }
 
 android {
-    namespace "com.example.yogaapp"  // ✅ Đúng!
-    compileSdk 34  // ⚡ Nên dùng phiên bản mới nhất
+    namespace "com.example.yogaapp"
+    compileSdk 34// ✅ Đúng!
+    // ⚡ Nên dùng phiên bản mới nhất
 
     defaultConfig {
         applicationId "com.example.yogaapp"
-        minSdk 21
+        minSdk 24
         targetSdk 34  // ⚡ Cập nhật target SDK cho Android 14
         versionCode 1
         versionName "1.0"
@@ -23,9 +24,13 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_16  // ⚡ Đổi thành Java 17
+        sourceCompatibility JavaVersion.VERSION_16
         targetCompatibility JavaVersion.VERSION_16
     }
+    buildFeatures{
+        viewBinding=true
+    }
+    buildToolsVersion '35.0.1'
 }
 
 dependencies {
@@ -33,11 +38,15 @@ dependencies {
     implementation 'com.google.android.material:material:1.11.0'  // ⚡ Dùng bản ổn định
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'  // ⚡ Tránh bản beta
 
-    testImplementation 'junit:junit:4.13.2'
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'  // ⚡ Cập nhật bản mới
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'  // ⚡ Cập nhật bản mới
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.google.android.gms:play-services-ads:22.6.0'
     implementation 'androidx.annotation:annotation:1.7.1'
+
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+
 }

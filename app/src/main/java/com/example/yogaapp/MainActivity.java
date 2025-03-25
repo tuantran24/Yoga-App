@@ -87,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         }
-        if (id == R.id.id_term){
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://iotexpert1.blogspot.com/2020/10/weight-loss-terms-and-condition-page.html"));
+        if (id == R.id.id_plan){
+            Intent intent = new Intent(MainActivity.this, PlanActivity.class);
             startActivity(intent);
             return true;
         }

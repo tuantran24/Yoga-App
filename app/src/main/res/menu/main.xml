@@ -9,8 +9,8 @@
         />
 
     <item
-        android:title="Terms and Condition"
-        android:id="@+id/id_term"
+        android:title="Nutrition &amp; Workout Plan"
+        android:id="@+id/id_plan"
         android:orderInCategory="101"
 
         />
