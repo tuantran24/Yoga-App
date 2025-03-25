@@ -70,6 +70,17 @@
                 android:padding="16dp"
                 android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/tv_no_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No data available. Please calculate your BMI!"
+                android:textSize="16sp"
+                android:textColor="@android:color/darker_gray"
+                android:gravity="center"
+                android:visibility="gone"
+                android:layout_marginTop="16dp"/>
+
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/line_chart"
                 android:layout_width="match_parent"

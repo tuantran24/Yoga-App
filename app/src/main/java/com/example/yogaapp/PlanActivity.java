@@ -32,12 +32,14 @@ public class PlanActivity extends AppCompatActivity {
     private static final int MAX_HISTORY = 10;
     private Button btnClearHistory;
     private TextView tvAdvice;
+    private TextView tvNoData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan);
         tvAdvice = findViewById(R.id.tv_advice);
+        tvNoData = findViewById(R.id.tv_no_data);
 
         btnClearHistory = findViewById(R.id.btn_clear_history);
         btnClearHistory.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +55,8 @@ public class PlanActivity extends AppCompatActivity {
                     lineChart.invalidate();
                 }
                 tvAdvice.setVisibility(View.GONE);
+                tvNoData.setVisibility(View.VISIBLE);
+                lineChart.setVisibility(View.GONE);
             }
         });
 
@@ -125,6 +129,15 @@ public class PlanActivity extends AppCompatActivity {
         String[] bmiHistory = getBMIHistory();
         List<Entry> entries = new ArrayList<>();
 
+        if (bmiHistory.length == 0) {
+            tvNoData.setVisibility(View.VISIBLE);
+            lineChart.setVisibility(View.GONE);
+            return;
+        } else {
+            tvNoData.setVisibility(View.GONE);
+            lineChart.setVisibility(View.VISIBLE);
+        }
+
         for (int i = 0; i < bmiHistory.length; i++) {
             entries.add(new Entry(i + 1, Float.parseFloat(bmiHistory[i])));
         }
@@ -177,7 +190,6 @@ public class PlanActivity extends AppCompatActivity {
         } else if (adviceText.contains("🍽️ You are losing weight rapidly! Make sure to eat well and maintain your health. 💪")) {
             intent = new Intent(PlanActivity.this, FoodActivity.class);
         } else {
-            Toast.makeText(this, "hi", Toast.LENGTH_SHORT).show();
             return;
         }
         intent.putExtra("advice", adviceText);
