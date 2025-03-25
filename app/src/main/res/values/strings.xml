@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Yoga App</string>
+    <string name="ADMOB_ADS_UNIT_ID">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="ad_attribution">Ad</string>
     <string name="pose1">    Step 1:- Start in the push-up position with your arms completely straight and directly beneath your shoulders.\n\n
                              Step 2:- Your body should form a straight line from your shoulders to your ankles. \n\n
                              Step 3:- Squeeze your abs, lift one foot off the floor and bring your knee up towards your chest while keeping your body in as straight of a line as possible. \n\n

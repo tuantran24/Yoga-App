@@ -5,10 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.google.android.gms.ads.LoadAdError;
 public class ThirdActivity extends AppCompatActivity {
 
     String buttonvalue;
@@ -17,11 +27,21 @@ public class ThirdActivity extends AppCompatActivity {
     TextView mtextview;
     private boolean MTimeRunning;
     private long MtimeLefttinmills;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+                loadInterstitialAd();
+            }
+        });
+
+
 
         Intent intent = getIntent();
         buttonvalue = intent.getStringExtra("value");
@@ -167,9 +187,42 @@ public class ThirdActivity extends AppCompatActivity {
         mtextview.setText(timeLeftText);
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
+    private void showInterstitialAd() {
+        if (mInterstitialAd != null) {
+            mInterstitialAd.show(this);
+        }
     }
 
+
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(ThirdActivity.this, SecondActivity.class);
+        startActivity(intent);
+        finish();
+
+        if (mInterstitialAd != null) {
+            mInterstitialAd.show(this);
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+            super.onBackPressed();
+        }
+    }
+
+
+    private void loadInterstitialAd() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        mInterstitialAd = interstitialAd;
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        mInterstitialAd = null;
+                    }
+                });
+    }
 }
