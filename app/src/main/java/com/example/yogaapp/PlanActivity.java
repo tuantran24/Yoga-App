@@ -39,10 +39,19 @@ public class PlanActivity extends AppCompatActivity {
         btnClearHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lineChart.clear();
-                lineChart.invalidate();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.apply();
+
+                if (lineChart.getData() != null) {
+                    lineChart.getData().clearValues();
+                    lineChart.clear();
+                    lineChart.invalidate();
+                }
             }
         });
+
+
 
         etHeight = findViewById(R.id.et_height);
         etWeight = findViewById(R.id.et_weight);

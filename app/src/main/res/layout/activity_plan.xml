@@ -6,93 +6,89 @@
     android:layout_height="match_parent"
     tools:context=".PlanActivity">
 
-    <LinearLayout
-        android:id="@+id/input_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="none"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="16dp">
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Enter Your Details"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:layout_marginBottom="16dp" />
-
-        <EditText
-            android:id="@+id/et_height"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Height (cm)"
-            android:inputType="numberDecimal"
-            android:padding="10dp"
-            android:layout_marginBottom="12dp" />
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <EditText
-            android:id="@+id/et_weight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Weight (kg)"
-            android:inputType="numberDecimal"
-            android:padding="10dp"
-            android:layout_marginBottom="16dp" />
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter Your Details"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_calculate"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Calculate"
-            android:textColor="#FFF"
-            android:background="@drawable/btn"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:padding="12dp" />
+            <EditText
+                android:id="@+id/et_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Height (cm)"
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                android:layout_marginBottom="12dp" />
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/et_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Weight (kg)"
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                android:layout_marginBottom="16dp" />
 
-    <!-- Kết quả BMI -->
-    <TextView
-        android:id="@+id/tv_result"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Your result will appear here"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:padding="16dp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/input_container"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_calculate"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Calculate"
+                android:textColor="#FFF"
+                android:background="@drawable/btn"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:padding="12dp" />
 
-    <!-- Biểu đồ hiển thị lịch sử BMI -->
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/line_chart"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_result"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_clear_history"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Clear History"
-        android:textColor="#FFF"
-        android:background="@drawable/btn"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:padding="12dp"
-        app:layout_constraintTop_toBottomOf="@id/line_chart"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+            <TextView
+                android:id="@+id/tv_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your result will appear here"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:padding="16dp"
+                android:textStyle="bold" />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/line_chart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_clear_history"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Clear History"
+                android:textColor="#FFF"
+                android:background="@drawable/btn"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:padding="12dp"
+                android:layout_marginTop="16dp"/>
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
