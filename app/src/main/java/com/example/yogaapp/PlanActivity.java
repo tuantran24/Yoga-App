@@ -1,6 +1,8 @@
 package com.example.yogaapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -29,11 +31,13 @@ public class PlanActivity extends AppCompatActivity {
     private static final String PREF_NAME = "BMI_HISTORY";
     private static final int MAX_HISTORY = 10;
     private Button btnClearHistory;
+    private TextView tvAdvice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan);
+        tvAdvice = findViewById(R.id.tv_advice);
 
         btnClearHistory = findViewById(R.id.btn_clear_history);
         btnClearHistory.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +52,7 @@ public class PlanActivity extends AppCompatActivity {
                     lineChart.clear();
                     lineChart.invalidate();
                 }
+                tvAdvice.setVisibility(View.GONE);
             }
         });
 
@@ -124,6 +129,26 @@ public class PlanActivity extends AppCompatActivity {
             entries.add(new Entry(i + 1, Float.parseFloat(bmiHistory[i])));
         }
 
+        if (entries.size() > 1) {
+            // Lấy 2 giá trị BMI gần nhất
+            float lastBMI = entries.get(entries.size() - 1).getY();
+            float prevBMI = entries.get(entries.size() - 2).getY();
+
+            float change = lastBMI - prevBMI;
+
+            if (change > 1.5) {
+                tvAdvice.setText("⚠️ You are gaining weight rapidly! Keep exercising diligently. 🏃‍♂️");
+                tvAdvice.setTextColor(Color.RED);
+                tvAdvice.setVisibility(View.VISIBLE);
+            } else if (change < -1.5) {
+                tvAdvice.setText("🍽️ You are losing weight rapidly! Make sure to eat well and maintain your health. 💪");
+                tvAdvice.setTextColor(Color.BLUE);
+                tvAdvice.setVisibility(View.VISIBLE);
+            } else {
+                tvAdvice.setVisibility(View.GONE);
+            }
+        }
+
         LineDataSet dataSet = new LineDataSet(entries, "BMI History");
         dataSet.setColor(Color.BLUE);
         dataSet.setValueTextSize(12f);
@@ -141,5 +166,21 @@ public class PlanActivity extends AppCompatActivity {
 
         lineChart.getAxisRight().setEnabled(false);
         lineChart.invalidate();
+    }
+
+
+    public void advice(View view) {
+        Intent intent;
+        String adviceText = tvAdvice.getText().toString();
+        if (adviceText.contains("⚠️ You are gaining weight rapidly! Keep exercising diligently. 🏃‍♂️")) {
+            intent = new Intent(PlanActivity.this, MainActivity.class);
+        } else if (adviceText.contains("🍽️ You are losing weight rapidly! Make sure to eat well and maintain your health. 💪")) {
+            intent = new Intent(PlanActivity.this, FoodActivity.class);
+        } else {
+            Toast.makeText(this, "hi", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        intent.putExtra("advice", adviceText);
+        startActivity(intent);
     }
 }
