@@ -8,7 +8,7 @@
             <stroke android:color="#E48653" android:width="5dp"/>
             <solid android:color="#FFA200"/>
             <corners android:radius="5dp"/>
-            <size android:width="145dp" android:height="65dp"/>
+            <size android:width="165dp" android:height="65dp"/>
 
         </shape>
 
