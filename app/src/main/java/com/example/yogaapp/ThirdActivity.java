@@ -28,6 +28,7 @@ public class ThirdActivity extends AppCompatActivity {
     private boolean MTimeRunning;
     private long MtimeLefttinmills;
     private InterstitialAd mInterstitialAd;
+    Button nextBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +99,7 @@ public class ThirdActivity extends AppCompatActivity {
         }
 
         startBtn = findViewById(R.id.startbutton);
+        nextBtn = findViewById(R.id.nextbutton);
         mtextview = findViewById(R.id.time);
 
         startBtn.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +115,22 @@ public class ThirdActivity extends AppCompatActivity {
                 }
             }
             });
+
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int newvalue = Integer.valueOf(buttonvalue) + 1;
+
+                if (newvalue > 15) {
+                    newvalue = 1;
+                }
+
+                Intent intent = new Intent(ThirdActivity.this, ThirdActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra("value", String.valueOf(newvalue));
+                startActivity(intent);
+            }
+        });
     }
 
     private void stopTimer()

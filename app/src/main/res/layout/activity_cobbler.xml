@@ -30,19 +30,40 @@
                 android:text="01:00"
                 android:textSize="28sp" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/startbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="08dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/button_bg"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:orientation="horizontal"
                 android:gravity="center"
-                android:text="START"
-                android:textColor="@android:color/white"
-                android:textSize="28sp"
-                android:textStyle="bold" />
+                >
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/startbutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="08dp"
+                    android:background="@drawable/button_bg"
+                    android:gravity="center"
+                    android:text="START"
+                    android:textColor="@android:color/white"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/nextbutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="08dp"
+                    android:background="@drawable/button_bg"
+                    android:gravity="center"
+                    android:text="NEXT"
+                    android:textColor="@android:color/white"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="305dp"
