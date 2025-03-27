@@ -9,29 +9,29 @@
         />
 
     <item
-        android:title="Workout Plan"
-        android:id="@+id/id_plan"
-        android:orderInCategory="101"
-
-        />
-
-    <item
         android:title="Rate us"
         android:id="@+id/id_rate"
-        android:orderInCategory="102"
+        android:orderInCategory="101"
 
         />
 
     <item
         android:title="More app"
         android:id="@+id/id_more"
-        android:orderInCategory="103"
+        android:orderInCategory="102"
 
         />
 
     <item
         android:title="Share"
         android:id="@+id/id_share"
+        android:orderInCategory="103"
+
+        />
+
+    <item
+        android:title="BMI Calculate"
+        android:id="@+id/id_plan"
         android:orderInCategory="104"
 
         />

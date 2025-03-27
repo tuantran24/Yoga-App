@@ -7,6 +7,36 @@
     android:orientation="vertical"
     tools:context=".PlanActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark"
+        android:textAlignment="textEnd"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:titleTextColor="#FFF"
+        >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="planback"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingLeft="10dp"
+        android:text="BMI Calculate"
+        android:textColor="#FFF"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        />
+    </androidx.appcompat.widget.Toolbar>
+
 
     <ScrollView
         android:layout_width="fill_parent"

@@ -195,4 +195,10 @@ public class PlanActivity extends AppCompatActivity {
         intent.putExtra("advice", adviceText);
         startActivity(intent);
     }
+
+    public void planback(View view) {
+        Intent intent = new Intent(PlanActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
