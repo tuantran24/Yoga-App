@@ -3,14 +3,19 @@ package com.example.yogaapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +26,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // 🛡️ Xin quyền POST_NOTIFICATIONS nếu Android 13+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS}, 100);
+            }
+        }
 
         Toolbar toolbar =  findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
@@ -33,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 startActivity(intent);
-
             }
         });
 
@@ -47,6 +60,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    // ✅ Xử lý kết quả xin quyền thông báo
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1001) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "✅ Đã cấp quyền thông báo", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "⚠️ Không thể gửi thông báo nếu bạn không cấp quyền!", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -95,6 +121,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.id_nutrition) {
             Intent intent = new Intent(MainActivity.this, NutritionActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.id_sleep) {
+            Intent intent = new Intent(MainActivity.this, sleepsetting.class);
             startActivity(intent);
             return true;
         }
