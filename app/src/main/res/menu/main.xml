@@ -9,7 +9,7 @@
         />
 
     <item
-        android:title="Nutrition &amp; Workout Plan"
+        android:title="Workout Plan"
         android:id="@+id/id_plan"
         android:orderInCategory="101"
 
@@ -34,6 +34,12 @@
         android:id="@+id/id_share"
         android:orderInCategory="104"
 
+        />
+
+    <item
+        android:title="Nutriton"
+        android:id="@+id/id_nutrition"
+        android:orderInCategory="105"
         />
 
 </menu>

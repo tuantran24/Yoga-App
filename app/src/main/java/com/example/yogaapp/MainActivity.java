@@ -93,6 +93,12 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.id_nutrition) {
+            Intent intent = new Intent(MainActivity.this, NutritionActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
         return true;
     }
 
