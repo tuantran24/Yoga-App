@@ -20,6 +20,9 @@ import com.github.mikephil.charting.data.LineDataSet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import android.widget.RadioGroup;
+import android.widget.RadioButton;
+
 
 public class PlanActivity extends AppCompatActivity {
 
@@ -33,6 +36,7 @@ public class PlanActivity extends AppCompatActivity {
     private Button btnClearHistory;
     private TextView tvAdvice;
     private TextView tvNoData;
+    private boolean isMale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,17 @@ public class PlanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_plan);
         tvAdvice = findViewById(R.id.tv_advice);
         tvNoData = findViewById(R.id.tv_no_data);
+        RadioGroup rgGender = findViewById(R.id.rg_gender);
+        isMale = ((RadioButton) findViewById(R.id.rb_male)).isChecked();
+
+        rgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                isMale = checkedId == R.id.rb_male;
+
+            }
+        });
+
 
         btnClearHistory = findViewById(R.id.btn_clear_history);
         btnClearHistory.setOnClickListener(new View.OnClickListener() {
@@ -100,7 +115,16 @@ public class PlanActivity extends AppCompatActivity {
             else if (bmi < 29.9) category = "Overweight";
             else category = "Obese";
 
-            tvResult.setText(String.format("BMI: %.1f\nCategory: %s", bmi, category));
+            double bmr;
+            if (isMale) {
+                bmr = 10 * weight + 6.25 * (height * 100) + 5;
+            } else {
+                bmr = 10 * weight + 6.25 * (height * 100) - 161;
+            }
+
+            tvResult.setText(String.format("BMI: %.1f\nCategory: %s\nBMR: %.1f kcal/day", bmi, category, bmr));
+
+
 
             saveBMI(bmi);
             loadChartData();
