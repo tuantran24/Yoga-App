@@ -22,4 +22,9 @@ public class Food {
     public void increaseQuantity() {
         this.quantity++;
     }
+    public void decreaseQuantity() {
+        if (this.quantity > 0) {
+            this.quantity--;
+        }
+    }
 }

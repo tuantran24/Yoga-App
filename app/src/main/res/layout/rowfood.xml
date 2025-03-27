@@ -14,6 +14,13 @@
         android:textSize="18sp"
         android:textColor="@color/black"/>
 
+    <Button
+        android:id="@+id/btnDecrease"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="-"
+        android:background="@drawable/button_bg"/>
+
     <TextView
         android:id="@+id/tvQuantity"
         android:layout_width="50dp"
