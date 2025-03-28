@@ -1,22 +1,33 @@
 package com.example.yogaapp;
 
+<<<<<<< HEAD
 import android.annotation.SuppressLint;
+=======
+>>>>>>> bc2dd54fdcfb4d1024f2a86119632187f79c2638
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+<<<<<<< HEAD
 import android.widget.CheckBox;
+=======
+>>>>>>> bc2dd54fdcfb4d1024f2a86119632187f79c2638
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+<<<<<<< HEAD
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+=======
+import java.util.ArrayList;
+import java.util.Collections;
+>>>>>>> bc2dd54fdcfb4d1024f2a86119632187f79c2638
 import java.util.List;
 
 public class SmartPlanActivity extends AppCompatActivity {
@@ -25,6 +36,11 @@ public class SmartPlanActivity extends AppCompatActivity {
     private Button btnCreatePlan;
     private LinearLayout planResultLayout;
 
+<<<<<<< HEAD
+=======
+    private final String[] weekdays = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+
+>>>>>>> bc2dd54fdcfb4d1024f2a86119632187f79c2638
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +50,10 @@ public class SmartPlanActivity extends AppCompatActivity {
         btnCreatePlan = findViewById(R.id.btnCreatePlan);
         planResultLayout = findViewById(R.id.planResultLayout);
 
+<<<<<<< HEAD
         // Tạo spinner lựa chọn số buổi
+=======
+>>>>>>> bc2dd54fdcfb4d1024f2a86119632187f79c2638
         List<String> options = new ArrayList<>();
         for (int i = 1; i <= 7; i++) {
             options.add(i + " sessions/week");
@@ -45,11 +64,15 @@ public class SmartPlanActivity extends AppCompatActivity {
         btnCreatePlan.setOnClickListener(v -> generatePlan());
     }
 
+<<<<<<< HEAD
     @SuppressLint("SimpleDateFormat")
+=======
+>>>>>>> bc2dd54fdcfb4d1024f2a86119632187f79c2638
     private void generatePlan() {
         int selectedPosition = sessionSpinner.getSelectedItemPosition();
         int numSessions = selectedPosition + 1;
 
+<<<<<<< HEAD
         planResultLayout.removeAllViews(); // Clear cũ
 
         List<Calendar> sessionDates = getSmartDistributedDates(numSessions);
@@ -80,6 +103,22 @@ public class SmartPlanActivity extends AppCompatActivity {
             ));
 
             // Sự kiện click để mở bài tập
+=======
+        planResultLayout.removeAllViews();
+
+        List<Integer> selectedDays = getDistributedDays(numSessions);
+
+        for (int i = 0; i < numSessions; i++) {
+            int dayIndex = selectedDays.get(i);
+            int workoutIndex = i + 1;
+
+            TextView tv = new TextView(this);
+            tv.setText("💪 " + weekdays[dayIndex] + ": Workout " + workoutIndex);
+            tv.setTextSize(16f);
+            tv.setTextColor(Color.BLACK);
+            tv.setPadding(16, 12, 16, 12);
+
+>>>>>>> bc2dd54fdcfb4d1024f2a86119632187f79c2638
             int finalWorkoutIndex = workoutIndex;
             tv.setOnClickListener(v -> {
                 Intent intent = new Intent(SmartPlanActivity.this, ThirdActivity.class);
@@ -87,6 +126,7 @@ public class SmartPlanActivity extends AppCompatActivity {
                 startActivity(intent);
             });
 
+<<<<<<< HEAD
             // Add cả 2 vào dòng
             sessionRow.addView(tv);
             sessionRow.addView(checkBox);
@@ -122,6 +162,30 @@ public class SmartPlanActivity extends AppCompatActivity {
         }
 
         return result;
+=======
+            planResultLayout.addView(tv);
+        }
+    }
+
+    private List<Integer> getDistributedDays(int count) {
+        List<Integer> days = new ArrayList<>();
+        List<Integer> weekDays = new ArrayList<>();
+
+        for (int i = 0; i < 7; i++) {
+            weekDays.add(i);
+        }
+
+        double step = 7.0 / count;
+        double currentIndex = 0;
+
+        for (int i = 0; i < count; i++) {
+            days.add(weekDays.get((int) Math.round(currentIndex) % 7));
+            currentIndex += step;
+        }
+
+        Collections.sort(days);
+        return days;
+>>>>>>> bc2dd54fdcfb4d1024f2a86119632187f79c2638
     }
 
     public void smartplan(View view) {
@@ -129,4 +193,8 @@ public class SmartPlanActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> bc2dd54fdcfb4d1024f2a86119632187f79c2638
