@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="Privacy Policy"
+        android:id="@+id/id_privacy"
+        android:orderInCategory="100"
+
+        />
+
+    <item
+        android:title="Rate us"
+        android:id="@+id/id_rate"
+        android:orderInCategory="101"
+
+        />
+
+    <item
+        android:title="More app"
+        android:id="@+id/id_more"
+        android:orderInCategory="102"
+
+        />
+
+    <item
+        android:title="Share"
+        android:id="@+id/id_share"
+        android:orderInCategory="103"
+
+        />
+
+    <item
+        android:title="BMI Calculate"
+        android:id="@+id/id_plan"
+        android:orderInCategory="104"
+
+        />
+
+    <item
+        android:title="Nutriton"
+        android:id="@+id/id_nutrition"
+        android:orderInCategory="105"
+        />
+
+    <item
+        android:id="@+id/id_sleep"
+        android:title="Workout Reminder"
+        android:orderInCategory="106" />
+
+    <item
+        android:id="@+id/id_smart_plan"
+        android:title="Smart Planner"
+        android:orderInCategory="107"
+        android:icon="@android:drawable/ic_menu_my_calendar"
+        />
+
+</menu>
