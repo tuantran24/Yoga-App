@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
     Button button1, button2;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,35 +35,29 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        Toolbar toolbar =  findViewById(R.id.toolBar);
+        Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
 
         button1 = findViewById(R.id.startyoga);
         button2 = findViewById(R.id.startyoga2);
 
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                startActivity(intent);
-            }
+        button1.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            startActivity(intent);
         });
 
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SecondActivity2.class);
-                startActivity(intent);
-
-            }
+        button2.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SecondActivity2.class);
+            startActivity(intent);
         });
 
     }
+
     // ✅ Xử lý kết quả xin quyền thông báo
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 1001) {
+        if (requestCode == 100) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "✅ Đã cấp quyền thông báo", Toast.LENGTH_SHORT).show();
             } else {
@@ -72,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -83,42 +75,40 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.id_privacy){
+
+        if (id == R.id.id_privacy) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://iotexpert1.blogspot.com/2020/10/weight-loss-privacy-ploicy-page.html"));
             startActivity(intent);
             return true;
         }
-        if (id == R.id.id_more){
+        if (id == R.id.id_more) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=Monsanto+Bogays&h1=en_US&g1=US"));
             startActivity(intent);
             return true;
         }
-        if (id == R.id.id_rate){
+        if (id == R.id.id_rate) {
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
-
-            } catch (Exception ex){
+            } catch (Exception ex) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/apps/details?id=" + getPackageName())));
             }
             return true;
         }
-        if (id == R.id.id_share){
+        if (id == R.id.id_share) {
             Intent myIntent = new Intent(Intent.ACTION_SEND);
             myIntent.setType("text/plain");
-            String sharebody = "This is the best for yoga\n By this app you streach your body\n This is the free download Now\n" + "https://play.google.com/apps/details?id=com.example.yogaapp&hl=en";
-            String sharehub = "Yoga App";
-            myIntent.putExtra(Intent.EXTRA_SUBJECT, sharehub);
-            myIntent.putExtra(Intent.EXTRA_TEXT, sharebody);
-            startActivity(myIntent.createChooser(myIntent, "share using"));
-
+            String shareBody = "This is the best yoga app!\nDownload now for free:\nhttps://play.google.com/apps/details?id=com.example.yogaapp&hl=en";
+            String shareSubject = "Yoga App";
+            myIntent.putExtra(Intent.EXTRA_SUBJECT, shareSubject);
+            myIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+            startActivity(Intent.createChooser(myIntent, "Share using"));
             return true;
         }
-        if (id == R.id.id_plan){
+        if (id == R.id.id_plan) {
             Intent intent = new Intent(MainActivity.this, PlanActivity.class);
             startActivity(intent);
             return true;
         }
-
         if (id == R.id.id_nutrition) {
             Intent intent = new Intent(MainActivity.this, NutritionActivity.class);
             startActivity(intent);
@@ -130,24 +120,27 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.id_attendan) {
+            Intent intent = new Intent(MainActivity.this, AttendanceActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
         return true;
     }
 
     public void beforeage18(View view) {
-        Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
         startActivity(intent);
-
     }
 
     public void afterage18(View view) {
-        Intent intent = new Intent(MainActivity.this,SecondActivity2.class);
+        Intent intent = new Intent(MainActivity.this, SecondActivity2.class);
         startActivity(intent);
-
     }
 
     public void food(View view) {
-        Intent intent = new Intent(MainActivity.this,FoodActivity.class);
+        Intent intent = new Intent(MainActivity.this, FoodActivity.class);
         startActivity(intent);
-
     }
 }

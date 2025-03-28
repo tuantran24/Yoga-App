@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+
+    <item
+        android:id="@+id/id_attendan"
+        android:title="Take Attendance"
+        android:orderInCategory="108" />
+
     <item
         android:title="Privacy Policy"
         android:id="@+id/id_privacy"
@@ -46,5 +52,7 @@
         android:id="@+id/id_sleep"
         android:title="Workout Reminder"
         android:orderInCategory="103" />
+
+
 
 </menu>
