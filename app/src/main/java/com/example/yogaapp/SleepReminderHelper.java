@@ -25,12 +25,12 @@ public class SleepReminderHelper {
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         if (alarmManager != null) {
-            alarmManager.setRepeating(
+            alarmManager.setExactAndAllowWhileIdle(
                     AlarmManager.RTC_WAKEUP,
                     calendar.getTimeInMillis(),
-                    AlarmManager.INTERVAL_DAY,
                     pendingIntent
             );
         }
+
     }
 }
