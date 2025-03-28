@@ -3,9 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/YogaDemoAppQUY/app/src/main/res/layout/activity_attendance.xml" value="0.1" />
+        <entry key="..\:/YogaDemoAppQUY/app/src/main/res/layout/activity_attendance.xml" value="0.2" />
+        <entry key="..\:/YogaDemoAppQUY/app/src/main/res/layout/activity_bow.xml" value="0.1" />
+        <entry key="..\:/YogaDemoAppQUY/app/src/main/res/layout/activity_child.xml" value="0.25" />
+        <entry key="..\:/YogaDemoAppQUY/app/src/main/res/layout/activity_cobbler.xml" value="0.12158054711246201" />
+        <entry key="..\:/YogaDemoAppQUY/app/src/main/res/layout/activity_crunches.xml" value="0.12158054711246201" />
+        <entry key="..\:/YogaDemoAppQUY/app/src/main/res/layout/activity_food.xml" value="0.1" />
         <entry key="..\:/YogaDemoAppQUY/app/src/main/res/layout/activity_food_detail.xml" value="0.12158054711246201" />
         <entry key="..\:/YogaDemoAppQUY/app/src/main/res/layout/activity_main.xml" value="0.12158054711246201" />
+        <entry key="..\:/YogaDemoAppQUY/app/src/main/res/layout/activity_sleepsetting.xml" value="0.12158054711246201" />
         <entry key="..\:/YogaDemoAppQUY/app/src/main/res/layout/item_day.xml" value="0.1" />
         <entry key="..\:/YogaDemoAppQUY/app/src/main/res/menu/main.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/backgroundcrop.xml" value="0.1785" />

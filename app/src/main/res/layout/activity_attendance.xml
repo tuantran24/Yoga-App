@@ -1,42 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:padding="20dp">
+    tools:context=".sleepsetting">
 
 
-    <DatePicker
-        android:id="@+id/datePicker"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:calendarViewShown="true"
-        android:spinnersShown="false" />
+        android:orientation="vertical"
+        >
 
-    <TextView
-        android:id="@+id/txtWorkoutDays"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bạn đã tập luyện: 0 ngày"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="20dp"/>
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            >
 
-    <Button
-        android:id="@+id/btnCheckIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Điểm danh"
-        android:backgroundTint="@android:color/holo_blue_dark"
-        android:textColor="@android:color/white"/>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolBar"
+                android:layout_width="fill_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@color/colorPrimaryDark"
+                >
 
-    <TextView
-        android:id="@+id/txtSelectedDate"
-        android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="foodGoBack"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingLeft="10dp"
+                    android:text="Take Attendance"
+                    android:textColor="#FFF"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    />
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Chưa chọn ngày"
-        android:textSize="16sp"
-        android:layout_marginTop="10dp"/>
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        >
+
+
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:calendarViewShown="true"
+            android:spinnersShown="false" />
+
+        <TextView
+            android:id="@+id/txtWorkoutDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bạn đã tập luyện: 0 ngày"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCheckIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Điểm danh"
+            android:background="@drawable/btn"
+            android:textColor="@android:color/white"/>
+
+        <TextView
+            android:id="@+id/txtSelectedDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chưa chọn ngày"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+
+
+
 
 </LinearLayout>
