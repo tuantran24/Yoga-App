@@ -71,14 +71,6 @@
             android:layout_width="16dp"
             android:layout_height="match_parent"/>
 
-        <Button
-            android:id="@+id/btnDeleteAll"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Delete All"
-            android:backgroundTint="@color/colorAccent"
-            android:textColor="#FFFFFF"/>
 
         <CheckBox
             android:id="@+id/checkAll"
