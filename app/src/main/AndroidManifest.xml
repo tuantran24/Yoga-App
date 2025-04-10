@@ -22,47 +22,62 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YogaApp"
         tools:targetApi="31">
+
         <activity
             android:name=".SmartPlanActivity"
             android:exported="true"/>
 
         <activity
+            android:name=".SongListActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".sleepsetting"
             android:exported="false" />
+
         <activity
             android:name=".NutritionActivity"
             android:exported="false" />
+
         <activity
             android:name=".PlanActivity"
             android:exported="false" />
+
         <activity
             android:name=".FoodActivityDetail"
             android:exported="false" />
+
         <activity
             android:name=".ThirdActivity2"
             android:exported="false" />
+
         <activity
             android:name=".ThirdActivity"
             android:exported="false" />
+
         <activity
             android:name=".FoodActivity"
             android:exported="false" />
+
         <activity
             android:name=".SecondActivity2"
             android:exported="false" />
+
         <activity
             android:name=".SecondActivity"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
+            android:exported="true"
             tools:ignore="Instantiatable" />
+
         <activity
             android:name=".Splashscreenok"
             android:exported="true"
             tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

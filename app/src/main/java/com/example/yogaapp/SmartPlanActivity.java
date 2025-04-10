@@ -1,132 +1,136 @@
 package com.example.yogaapp;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 
 public class SmartPlanActivity extends AppCompatActivity {
 
-    private Spinner sessionSpinner;
-    private Button btnCreatePlan;
+    private DatePicker datePicker;
+    private Button btnSaveDate;
+    private CheckBox checkAll;
     private LinearLayout planResultLayout;
+    private SharedPreferences sharedPreferences;
+    private List<String> selectedDates;
+    private Set<String> checkedDates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_smart_plan);
 
-        sessionSpinner = findViewById(R.id.sessionSpinner);
-        btnCreatePlan = findViewById(R.id.btnCreatePlan);
+
+
+        // Khởi tạo UI
+        datePicker = findViewById(R.id.datePicker);
+        btnSaveDate = findViewById(R.id.btnSaveDate);
+        checkAll = findViewById(R.id.checkAll);
         planResultLayout = findViewById(R.id.planResultLayout);
 
-        // Tạo spinner lựa chọn số buổi
-        List<String> options = new ArrayList<>();
-        for (int i = 1; i <= 7; i++) {
-            options.add(i + " sessions/week");
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, options);
-        sessionSpinner.setAdapter(adapter);
+        // Khởi tạo SharedPreferences
+        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        selectedDates = new ArrayList<>(sharedPreferences.getStringSet("selected_dates", new HashSet<>())) ;
+        checkedDates = new HashSet<>(sharedPreferences.getStringSet("checked_dates", new HashSet<>())) ;
 
-        btnCreatePlan.setOnClickListener(v -> generatePlan());
+        // Load dữ liệu khi mở app
+        displaySelectedDates();
+
+        // Nút Save Date
+        btnSaveDate.setOnClickListener(v -> saveSelectedDate());
+
+        // Checkbox Check All
+        checkAll.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                checkedDates.addAll(selectedDates);
+            } else {
+                checkedDates.clear();
+            }
+            saveDatesToPreferences();
+            displaySelectedDates();
+        });
     }
 
     @SuppressLint("SimpleDateFormat")
-    private void generatePlan() {
-        int selectedPosition = sessionSpinner.getSelectedItemPosition();
-        int numSessions = selectedPosition + 1;
+    private void saveSelectedDate() {
+        int day = datePicker.getDayOfMonth();
+        int month = datePicker.getMonth() + 1;
+        int year = datePicker.getYear();
 
-        planResultLayout.removeAllViews(); // Clear cũ
+        String selectedDate = String.format(Locale.getDefault(), "%02d/%02d/%04d", day, month, year);
 
-        List<Calendar> sessionDates = getSmartDistributedDates(numSessions);
-        SimpleDateFormat sdf = new SimpleDateFormat("EEE dd/MM");
+        if (!selectedDates.contains(selectedDate)) {
+            selectedDates.add(selectedDate);
+            saveDatesToPreferences();
+            displaySelectedDates();
+        }
+    }
 
-        for (int i = 0; i < numSessions; i++) {
-            Calendar sessionDate = sessionDates.get(i);
-            String formattedDate = sdf.format(sessionDate.getTime());
-            int workoutIndex = i + 1;
+    private void saveDatesToPreferences() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putStringSet("selected_dates", new HashSet<>(selectedDates));
+        editor.putStringSet("checked_dates", checkedDates);
+        editor.apply();
+    }
 
-            // Layout hàng ngang chứa Text + CheckBox
-            LinearLayout sessionRow = new LinearLayout(this);
-            sessionRow.setOrientation(LinearLayout.HORIZONTAL);
-            sessionRow.setPadding(16, 10, 16, 10);
+    private void displaySelectedDates() {
+        planResultLayout.removeAllViews();
 
-            // TextView cho ngày tập
+        for (String date : selectedDates) {
+            LinearLayout row = new LinearLayout(this);
+            row.setOrientation(LinearLayout.HORIZONTAL);
+            row.setPadding(16, 10, 16, 10);
+
+            // CheckBox để tick
+            CheckBox checkBox = new CheckBox(this);
+            checkBox.setChecked(checkedDates.contains(date));
+            checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                if (isChecked) {
+                    checkedDates.add(date);
+                } else {
+                    checkedDates.remove(date);
+                }
+                saveDatesToPreferences();
+            });
+
+            // Text hiển thị ngày
             TextView tv = new TextView(this);
-            tv.setText("💪 " + formattedDate + ": Session " + workoutIndex);
+            tv.setText("📅 " + date);
             tv.setTextSize(16f);
             tv.setTextColor(Color.BLACK);
             tv.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
 
-            // CheckBox đánh dấu đã tập
-            CheckBox checkBox = new CheckBox(this);
-            checkBox.setLayoutParams(new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            ));
-
-            // Sự kiện click để mở bài tập
-            int finalWorkoutIndex = workoutIndex;
-            tv.setOnClickListener(v -> {
-                Intent intent = new Intent(SmartPlanActivity.this, ThirdActivity.class);
-                intent.putExtra("value", String.valueOf(finalWorkoutIndex));
-                startActivity(intent);
+            // Nút X để xóa
+            Button btnDelete = new Button(this);
+            btnDelete.setText("❌");
+            btnDelete.setOnClickListener(v -> {
+                selectedDates.remove(date);
+                checkedDates.remove(date); // xóa luôn trong set đã tick nếu có
+                saveDatesToPreferences();
+                displaySelectedDates();
             });
 
-            // Add cả 2 vào dòng
-            sessionRow.addView(tv);
-            sessionRow.addView(checkBox);
-            planResultLayout.addView(sessionRow);
+            row.addView(checkBox); // thêm CheckBox trước
+            row.addView(tv);       // sau đó là ngày
+            row.addView(btnDelete); // cuối cùng là nút xóa
+            planResultLayout.addView(row);
         }
-    }
-
-    // Phân bố ngày tập theo preset xen kẽ (bắt đầu từ Thứ 2)
-    private List<Calendar> getSmartDistributedDates(int count) {
-        List<Calendar> result = new ArrayList<>();
-        Calendar start = Calendar.getInstance();
-
-        // Bắt đầu từ Thứ 2 tuần hiện tại
-        while (start.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY) {
-            start.add(Calendar.DAY_OF_MONTH, 1);
-        }
-
-        int[][] presets = {
-                {0},                   // 1 buổi -> Thứ 2
-                {0, 2},                // 2 buổi -> Thứ 2, Thứ 4
-                {0, 2, 4},             // 3 buổi -> 2 4 6
-                {0, 1, 3, 5},          // 4 buổi
-                {0, 1, 3, 4, 6},       // 5 buổi
-                {0, 1, 2, 3, 5, 6},    // 6 buổi
-                {0, 1, 2, 3, 4, 5, 6}  // 7 buổi
-        };
-
-        int[] offsets = presets[Math.min(count - 1, 6)];
-        for (int offset : offsets) {
-            Calendar c = (Calendar) start.clone();
-            c.add(Calendar.DAY_OF_MONTH, offset);
-            result.add(c);
-        }
-
-        return result;
-    }
-
-    public void smartplan(View view) {
-        Intent intent = new Intent(SmartPlanActivity.this, MainActivity.class);
-        startActivity(intent);
-        finish();
     }
 }
