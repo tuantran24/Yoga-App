@@ -54,9 +54,5 @@
         android:icon="@android:drawable/ic_menu_my_calendar"
         />
 
-    <item
-        android:id="@+id/id_song"
-        android:title="Song"
-        android:orderInCategory="108" />
 
 </menu>
