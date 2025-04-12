@@ -1,104 +1,104 @@
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
+    android:fillViewport="true"
     tools:context=".SmartPlanActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolBar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimaryDark"
-        android:textAlignment="textEnd"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:titleTextColor="#FFF">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="smartplan"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_baseline_keyboard_arrow_left_24"/>
+        <!-- Toolbar -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimaryDark"
+            android:textAlignment="textEnd"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:titleTextColor="#FFF">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_baseline_keyboard_arrow_left_24"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="10dp"
+                android:text="Workout Schedule"
+                android:textColor="#FFF"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+        </androidx.appcompat.widget.Toolbar>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingLeft="10dp"
-            android:text="Workout Schedule"
-            android:textColor="#FFF"
-            android:textSize="20dp"
+            android:text="Select a date:"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp"
             android:textStyle="bold"/>
-    </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select a date:"
-        android:textSize="18sp"
-        android:layout_marginTop="16dp"
-        android:textStyle="bold"/>
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:calendarViewShown="true"
+            android:spinnersShown="false"
+            android:gravity="center_horizontal"/>
 
-    <DatePicker
-        android:id="@+id/datePicker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:calendarViewShown="true"
-        android:spinnersShown="false"
-        android:gravity="center_horizontal"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+            <Button
+                android:id="@+id/btnSaveDate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Save Date"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="#FFFFFF"/>
 
-        <Button
-            android:id="@+id/btnSaveDate"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Save Date"
-            android:backgroundTint="@color/colorPrimary"
-            android:textColor="#FFFFFF"/>
+            <View
+                android:layout_width="16dp"
+                android:layout_height="match_parent"/>
 
-        <View
-            android:layout_width="16dp"
-            android:layout_height="match_parent"/>
+            <CheckBox
+                android:id="@+id/checkAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Check All"
+                android:paddingLeft="10dp"
+                android:textSize="14sp"/>
+        </LinearLayout>
 
-
-        <CheckBox
-            android:id="@+id/checkAll"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Check All"
-            android:paddingLeft="10dp"
-            android:textSize="14sp"/>
-    </LinearLayout>
+            android:text="Selected Dates:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Selected Dates:"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"/>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
-
+        <!-- Kết quả -->
         <LinearLayout
             android:id="@+id/planResultLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"/>
-    </ScrollView>
-
-</LinearLayout>
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+</ScrollView>
